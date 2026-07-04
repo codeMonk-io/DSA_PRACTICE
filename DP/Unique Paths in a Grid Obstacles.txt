@@ -1,0 +1,36 @@
+Given a grid grid[][] of size n × m containing values 0 and 1 having the following meanings:
+
+0 represents an open cell through which movement is allowed.
+1 represents a blocked cell that cannot be traversed.
+Starting from the top-left cell (0, 0), find the total number of distinct paths to reach the bottom-right cell (n - 1, m - 1). From any cell, movement is allowed only in the right and down directions, and a path is valid only if it passes through open cells.
+
+Note: It is guaranteed that the answer fits within a 32-bit integer.
+
+Examples:
+
+Input: grid[][] = {{0, 0, 0},{0, 1, 0},{0, 0, 0}}
+Output: 2
+
+class Solution {
+    int dp[][];
+    public int uniquePaths(int[][] grid) {
+        int n =grid.length;
+        int m =grid[0].length;
+        dp = new int[n][m];
+        for (int i = 0; i < n; i++)
+            Arrays.fill(dp[i], -1);
+        return solve(grid,n-1,m-1);
+    }
+    int solve(int [][]grid,int n ,int m){
+        
+        if(n<0||m<0) return 0;
+        if(grid[n][m]==1) return 0;
+        if(dp[n][m]!=-1) return dp[n][m];
+        if(n == 0 && m == 0)
+            return 1;
+            int up=solve(grid,n-1,m);
+            int down=solve(grid,n,m-1);
+        dp[n][m]=up+down;
+        return dp[n][m];
+    }
+};
