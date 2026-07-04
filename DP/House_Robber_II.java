@@ -20,8 +20,12 @@
 // Input: nums = [1,2,3]
 // Output: 3
 
-class Solution {
-    public int rob(int[] nums) {
+
+public class House_Robber_II {
+    public static void main(String[] args) {
+        System.out.println(rob(new int[]{2,3,2}));
+    }
+    public static int rob(int[] nums) {
         int n=nums.length;
         if (n==1) return nums[0];
         int[] dp1 = new int[n];
@@ -34,7 +38,7 @@ class Solution {
         int case2 = solve(dp2, n-1, 1, nums);
         return Math.max(case1, case2);       
     }
-    int solve(int []dp,int i,int start,int []nums){    
+    static int  solve(int []dp,int i,int start,int []nums){    
         if(i<start) return 0;
         if(dp[i]!=-1) return dp[i];
 
